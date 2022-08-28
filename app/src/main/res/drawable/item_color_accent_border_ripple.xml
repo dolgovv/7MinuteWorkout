@@ -8,5 +8,5 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/item_round_color_accent_border"/>
+    <item android:drawable="@drawable/start_button_style"/>
 </ripple>
