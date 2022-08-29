@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -51,22 +52,25 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
+                       android:id="@+id/exerProgressBar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:progress="25"
-                        android:max="100"
+                        android:progress="0"
+                        android:max="10"
                         app:indicatorSize="220dp"
                         app:trackThickness="10dp"
                         android:layout_gravity="center"
-                        />
+                        tools:ignore="InvalidId" />
 
                     <ImageView
+                        android:id="@+id/ibStartExercise"
                         android:layout_width="190dp"
                         android:layout_height="190dp"
                         android:src="@drawable/start_button_style"
                         android:layout_gravity="center"/>
 
                     <TextView
+                        android:id="@+id/tvTimer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="START"
