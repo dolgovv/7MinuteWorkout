@@ -8,9 +8,11 @@
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/llStartCountDown"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/upper_case_exercise"
@@ -71,6 +73,82 @@
 
                     <TextView
                         android:id="@+id/tvTimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="START"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llRunning"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/upper_case_exercise_running"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:gravity="left|center"
+                />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/upper_case_exercise"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get ready"
+                android:textSize="40sp"/>
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/exerProgressBar_running"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:progress="0"
+                        android:max="15"
+                        app:indicatorSize="220dp"
+                        app:trackThickness="10dp"
+                        android:layout_gravity="center"
+                        tools:ignore="InvalidId" />
+
+                    <ImageView
+                        android:id="@+id/ibStartExercise_running"
+                        android:layout_width="190dp"
+                        android:layout_height="190dp"
+                        android:src="@drawable/start_button_style"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvTimer_running"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="START"
