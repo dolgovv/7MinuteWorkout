@@ -47,10 +47,10 @@ class ExerciseActivity : AppCompatActivity() {
         upper_case_exercise_running.setNavigationOnClickListener {
             onBackPressed()
         }
-        setUpRestView()
+
 
         exerciseList = Constants.defaultExerciseList()
-
+        setUpRestView()
     }
 
     override fun onDestroy() {
@@ -61,63 +61,87 @@ class ExerciseActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun setRestProgressBar() {
-        exerProgressBar.progress = restProgress
-        restTimer = object : CountDownTimer(10000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                restProgress++
-                exerProgressBar.progress = 11 - restProgress
-                tvTimer.text = (11 - restProgress).toString()
-            }
-
-            override fun onFinish() {
-                currentExercise++
-                Toast.makeText(
-                    this@ExerciseActivity, "dawaii pognall",
-                    Toast.LENGTH_SHORT
-                ).show()
-                llRunning.visibility = View.VISIBLE
-                llStartCountDown.visibility = View.GONE
-                startRunningProgressBar()
-                restProgress = 0
-                setUpRunningView()
-            }
-        }.start()
-
-    }
-
-    private fun startRunningProgressBar() {
-        exerProgressBar_running.progress = runningProgress
-        runningTimer = object : CountDownTimer(15000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                runningProgress++
-                exerProgressBar_running.progress = 16 - runningProgress
-                tvTimer_running.text = (16 - runningProgress).toString()
-            }
-
-            override fun onFinish() {
-                Toast.makeText(
-                    this@ExerciseActivity, "done yept",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }.start()
-    }
-
+    //установка экрана отдыха
+    //скрывает экран выполнения, сбрасывает таймер отдыха, устанавливает таймер отдыха
     private fun setUpRestView() {
+        llStartCountDown.visibility = View.VISIBLE
+        llRunning.visibility = View.GONE
         if (restTimer != null) {
             restTimer!!.cancel()
             restProgress = 0
         }
-
+        tvTextRest.text = "Get ready to ${exerciseList!![currentExercise+1].getName()}"
         setRestProgressBar()
     }
+
+    //установка экрана выполнения упражнения
+    //скрывает экран отдыха, сбрасывает таймер выполнения, уст. картинки и текста, устанавливает таймер выполнения
     private fun setUpRunningView() {
+
+        llRunning.visibility = View.VISIBLE
+        llStartCountDown.visibility = View.GONE
+
         if (runningTimer != null) {
             runningTimer!!.cancel()
             runningProgress = 0
         }
-
-        startRunningProgressBar()
+        //setup exercise details
+            ivImage.setImageResource(exerciseList!![currentExercise].getImage())
+            tvTextRunning.text = exerciseList!![currentExercise].getName()
+            startRunningProgressBar()
     }
+
+    //установка и указания прогрессбара-таймера отдыха
+    private fun setRestProgressBar() {
+
+        exerProgressBar.progress = restProgress
+        restTimer = object : CountDownTimer(10000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                restProgress++
+                exerProgressBar.progress = 10 - restProgress
+                tvTimer.text = (10 - restProgress).toString()
+            }
+
+            override fun onFinish() {
+                //timer is gone - adjusting current exercise count - reset resProgress - setup running view
+                currentExercise++
+                restProgress = 0
+                setUpRunningView()
+            }
+        }.start()
+    }
+
+    //установка и указания прогрессбара-таймера выполнения упражнения
+    private fun startRunningProgressBar() {
+
+        //timer algorithm setup
+        exerProgressBar_running.progress = runningProgress
+        runningTimer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+
+                runningProgress++
+                exerProgressBar_running.progress = 30 - runningProgress
+                tvTimer_running.text = (30 - runningProgress).toString()
+            }
+
+            override fun onFinish() {
+                //timer is gone - reset running progress - another view setup
+                runningProgress = 0
+                //setting up rest view if next exercise is available
+                if (currentExercise+1<exerciseList!!.size){
+                setUpRestView()
+                }else{ //otherwise showing something
+                    Toast.makeText(this@ExerciseActivity, "gospodi blyat", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.start()
+    }
+
+
 }
+
+//установка отдыха с таймером - таймер кончился (+1 тек.упр -
+// установка выполнения с таймером - таймер кончился -
+// установка отдыха с таймером - таймер кончился (+1 тек.упр
+
+//возникает проблема с установкой таймера отдыха

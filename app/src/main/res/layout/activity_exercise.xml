@@ -38,10 +38,11 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tvTextRest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Get ready"
-                android:textSize="40sp"/>
+                android:text=""
+                android:textSize="20sp"/>
 
             <LinearLayout
                 android:layout_width="250dp"
@@ -113,7 +114,16 @@
             android:orientation="vertical"
             android:gravity="center">
 
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/mainscreen"
+                />
+
+
             <TextView
+                android:id="@+id/tvTextRunning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Get ready"
