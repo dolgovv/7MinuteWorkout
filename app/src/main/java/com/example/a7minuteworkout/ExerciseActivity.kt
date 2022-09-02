@@ -14,6 +14,7 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var restProgress = 0
     private var restTimer: CountDownTimer? = null
+
     private var runningProgress = 0
     private var runningTimer: CountDownTimer? = null
 
@@ -24,7 +25,8 @@ class ExerciseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
 
-        setSupportActionBar(upper_case_exercise) //toolbar at the start rest countdown timer menu
+        //implementing a toolbar at the start rest countdown timer menu
+        setSupportActionBar(upper_case_exercise)
         val actionbar = supportActionBar
         if (actionbar != null) {
             actionbar.setDisplayHomeAsUpEnabled(true)
@@ -36,7 +38,8 @@ class ExerciseActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        setSupportActionBar(upper_case_exercise_running) //toolbar at the start exercise timer menu
+        //toolbar at the start exercise timer menu
+        setSupportActionBar(upper_case_exercise_running)
         val actionbarRunning = supportActionBar
         if (actionbarRunning != null) {
             actionbarRunning.setDisplayHomeAsUpEnabled(true)
@@ -49,23 +52,31 @@ class ExerciseActivity : AppCompatActivity() {
         }
 
 
+        //implementing an exercise list and setting up a rest view
         exerciseList = Constants.defaultExerciseList()
         setUpRestView()
     }
 
+    //destroying all the var`s needed to rest and running views working
     override fun onDestroy() {
         if (restTimer != null) {
             restTimer!!.cancel()
             restProgress = 0
         }
+        if (runningTimer != null){
+            runningTimer!!.cancel()
+            runningProgress = 0
+        }
         super.onDestroy()
     }
 
     //установка экрана отдыха
-    //скрывает экран выполнения, сбрасывает таймер отдыха, устанавливает таймер отдыха
+    //скрывает экран выполнения, сбрасывает таймер отдыха,
+    // устанавливает текст подготовки к след. упражнению, устанавливает таймер отдыха
     private fun setUpRestView() {
         llStartCountDown.visibility = View.VISIBLE
         llRunning.visibility = View.GONE
+
         if (restTimer != null) {
             restTimer!!.cancel()
             restProgress = 0
@@ -75,7 +86,8 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     //установка экрана выполнения упражнения
-    //скрывает экран отдыха, сбрасывает таймер выполнения, уст. картинки и текста, устанавливает таймер выполнения
+    //скрывает экран отдыха, сбрасывает таймер выполнения, уст. картинки и текст,
+    // устанавливает таймер выполнения
     private fun setUpRunningView() {
 
         llRunning.visibility = View.VISIBLE
@@ -88,10 +100,11 @@ class ExerciseActivity : AppCompatActivity() {
         //setup exercise details
             ivImage.setImageResource(exerciseList!![currentExercise].getImage())
             tvTextRunning.text = exerciseList!![currentExercise].getName()
-            startRunningProgressBar()
+        setRunningProgressBar()
     }
 
-    //установка и указания прогрессбара-таймера отдыха
+    //установка таймера отдыха, по завершению +1 к значению текущего упражнения,
+    // установка прогресса таймера отдыха на ноль, вызов установки Running view
     private fun setRestProgressBar() {
 
         exerProgressBar.progress = restProgress
@@ -112,7 +125,7 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     //установка и указания прогрессбара-таймера выполнения упражнения
-    private fun startRunningProgressBar() {
+    private fun setRunningProgressBar() {
 
         //timer algorithm setup
         exerProgressBar_running.progress = runningProgress
