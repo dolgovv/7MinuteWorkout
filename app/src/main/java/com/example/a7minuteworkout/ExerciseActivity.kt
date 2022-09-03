@@ -1,6 +1,7 @@
 package com.example.a7minuteworkout
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import kotlinx.android.synthetic.main.activity_exercise.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -25,6 +27,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var exerciseList: ArrayList<ExerciseModel>? = null
     private var currentExercise = -1
     private var tts: TextToSpeech? = null
+
+    private var soundPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +81,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tts!!.stop()
             tts!!.shutdown()
         }
+        if(soundPlayer != null){
+            soundPlayer!!.stop()
+        }
         super.onDestroy()
     }
 
@@ -84,6 +91,14 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     //скрывает экран выполнения, сбрасывает таймер отдыха,
     // устанавливает текст подготовки к след. упражнению, устанавливает таймер отдыха
     private fun setUpRestView() {
+        try {
+            soundPlayer = MediaPlayer.create(applicationContext, R.raw.success_sound)
+            soundPlayer!!.isLooping = false
+            soundPlayer!!.start()
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+
         llStartCountDown.visibility = View.VISIBLE
         llRunning.visibility = View.GONE
 
