@@ -8,8 +8,11 @@ import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_exercise.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
@@ -29,6 +32,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
 
     private var soundPlayer: MediaPlayer? = null
+
+    private var exerciseAdapter: ExerciseStatusAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +70,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         //implementing an exercise list and setting up a rest view
         exerciseList = Constants.defaultExerciseList()
         setUpRestView()
+
+        setUpExerciseStatusRecycleView()
     }
 
     //destroying all the var`s needed to rest and running views working
@@ -189,6 +196,12 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
+    private fun setUpExerciseStatusRecycleView(){
+        rvExerciseStatus.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.HORIZONTAL, false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!, this)
+        rvExerciseStatus.adapter = exerciseAdapter
+    }
 }
 
 //установка отдыха с таймером - таймер кончился (+1 тек.упр -
