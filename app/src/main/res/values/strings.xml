@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">7MinuteWorkout</string>
+    <string name="cancel">Cancel</string>
+    <string name="decline">No</string>
+    <string name="accept">Yes</string>
+    <string name="supporting_text">This will stop your workout. You`ve come so far, are you sure you want to quit?</string>
+    <string name="title">Are you sure?</string>
 </resources>

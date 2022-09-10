@@ -21,20 +21,28 @@ class ExerciseStatusAdapter(val items: ArrayList<ExerciseModel>, val context: Co
         val model: ExerciseModel = items[position]
         holder.tvItem.text = model.getId().toString()
 
+        //set the selected exercise color
         if(model.getIsSelected()){
             holder.tvItem.background = ContextCompat.getDrawable(context,
                 R.drawable.item_round_selected)
             holder.tvItem.setTextColor(Color.parseColor("#212121"))
-        }else if(model.getIsCompleted()){
+        }
+
+        //set the completed exercise color
+        else if(model.getIsCompleted()){
             holder.tvItem.background = ContextCompat.getDrawable(context,
                 R.drawable.item_round_completed)
             holder.tvItem.setTextColor(Color.parseColor("#FFFFFF"))
-        }else{
+
+
+        }
+
+        //set the incoming exercise color
+        else{
             holder.tvItem.background = ContextCompat.getDrawable(context,
                 R.drawable.item_round_grey_background)
             holder.tvItem.setTextColor(Color.parseColor("#000000"))
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

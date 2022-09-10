@@ -1,11 +1,13 @@
 package com.example.a7minuteworkout
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
+import android.system.Os.accept
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
@@ -13,8 +15,10 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_exercise.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.NonCancellable.cancel
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -28,16 +32,42 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var runningTimer: CountDownTimer? = null
 
     private var exerciseList: ArrayList<ExerciseModel>? = null
-    private var currentExercise = -1
+    private var currentExercise = -1 //made for convenient increasing index at the RestBar`s finish
+
     private var tts: TextToSpeech? = null
 
     private var soundPlayer: MediaPlayer? = null
 
     private var exerciseAdapter: ExerciseStatusAdapter? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
+
+        val exitDialog: Dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.title))
+            .setMessage(resources.getString(R.string.supporting_text))
+            .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                dialog.cancel()
+            }
+            .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                finish()
+                dialog.dismiss()
+            }.create()
+
+        btn_cheat_forward.setOnClickListener{
+            val intent = Intent(this@ExerciseActivity, FinishExerciseActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_cheat_forward_two.setOnClickListener{
+            exitDialog.show()
+        }
 
         //implementing a toolbar at the start rest countdown timer menu
         setSupportActionBar(upper_case_exercise)
@@ -46,10 +76,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             actionbar.setDisplayHomeAsUpEnabled(true)
         }
         upper_case_exercise.setNavigationOnClickListener {
-            onBackPressed()
+            exitDialog.show()
         }
         upper_case_exercise_running.setNavigationOnClickListener {
-            onBackPressed()
+            exitDialog.show()
         }
 
         //toolbar at the start exercise timer menu
@@ -59,18 +89,17 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             actionbarRunning.setDisplayHomeAsUpEnabled(true)
         }
         upper_case_exercise.setNavigationOnClickListener {
-            onBackPressed()
+            exitDialog.show()
         }
         upper_case_exercise_running.setNavigationOnClickListener {
-            onBackPressed()
+            exitDialog.show()
         }
 
-
         tts = TextToSpeech(this,this)
-        //implementing an exercise list and setting up a rest view
+
+        //implementing an exercise list, setting up a rest view and a recycle view
         exerciseList = Constants.defaultExerciseList()
         setUpRestView()
-
         setUpExerciseStatusRecycleView()
     }
 
@@ -94,9 +123,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onDestroy()
     }
 
-    //установка экрана отдыха
-    //скрывает экран выполнения, сбрасывает таймер отдыха,
-    // устанавливает текст подготовки к след. упражнению, устанавливает таймер отдыха
+    //setting up rest view:
+    //play success sound
+    //hide running view, reset RestTimer
+    //setting up incoming exercise text and RestBar
     private fun setUpRestView() {
         try {
             soundPlayer = MediaPlayer.create(applicationContext, R.raw.success_sound)
@@ -113,6 +143,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             restTimer!!.cancel()
             restProgress = 0
         }
+
         tvTextRest.text = "Get ready to ${exerciseList!![currentExercise+1].getName()}"
         setRestProgressBar()
     }
@@ -129,6 +160,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             runningTimer!!.cancel()
             runningProgress = 0
         }
+
         speakOut(exerciseList!![currentExercise].getName())
         //setup exercise details
             ivImage.setImageResource(exerciseList!![currentExercise].getImage())
@@ -152,6 +184,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 //timer is gone - adjusting current exercise count - reset resProgress - setup running view
                 currentExercise++
                 restProgress = 0
+
+                exerciseList!![currentExercise].setIsSelected(true)
+                exerciseAdapter!!.notifyDataSetChanged()
                 setUpRunningView()
             }
         }.start()
@@ -174,9 +209,19 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 runningProgress = 0
                 //setting up rest view if next exercise is available
                 if (currentExercise+1<exerciseList!!.size){
+
+                    exerciseList!![currentExercise].setIsSelected(false)
+                    exerciseList!![currentExercise].setIsCompleted(true)
+                    exerciseAdapter!!.notifyDataSetChanged()
                 setUpRestView()
                 }else{ //otherwise showing something
-                    Toast.makeText(this@ExerciseActivity, "gospodi blyat", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ExerciseActivity,
+                        FinishExerciseActivity::class.java)
+                    startActivity(intent)
+
+                    Toast.makeText(this@ExerciseActivity,
+                        "gospodi blyat",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
         }.start()
@@ -201,7 +246,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             LinearLayoutManager.HORIZONTAL, false)
         exerciseAdapter = ExerciseStatusAdapter(exerciseList!!, this)
         rvExerciseStatus.adapter = exerciseAdapter
+
     }
+
+
 }
 
 //установка отдыха с таймером - таймер кончился (+1 тек.упр -

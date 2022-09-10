@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/govno"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="450dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HUY"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:layout_margin="20dp"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
-                android:src="@drawable/exercise_done" />
+                android:src="@drawable/ic_exercise_done" />
         </FrameLayout>
 
         <TextView

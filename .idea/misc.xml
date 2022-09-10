@@ -3,17 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/ic_exercise_done.xml" value="0.179" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/ic_launcher_background.xml" value="0.136" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.136" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_color_accent_border_ripple.xml" value="0.136" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_round_color_accent_border.xml" value="0.136" />
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_round_completed.xml" value="0.179" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_round_green_background.xml" value="0.179" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_round_grey_background.xml" value="0.179" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/item_round_selected.xml" value="0.179" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/drawable/start_button_style.xml" value="0.136" />
-        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_exercise.xml" value="0.2" />
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_bmicalculator.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_exercise.xml" value="0.12" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_finish_exercise.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/back_custom_dialog.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/exercise_menu_activity.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/finished_exercises_screen.xml" value="0.2" />
         <entry key="..\:/Users/dio/AndroidStudioProjects/7MinuteWorkout/app/src/main/res/layout/item_exercise_status.xml" value="0.22826086956521738" />

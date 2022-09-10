@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/upper_case_exercise"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="?android:attr/actionBarSize"
             android:orientation="horizontal">
 
             <TextView
@@ -28,6 +28,7 @@
                 android:textSize="40sp"
                 android:gravity="left|center"
                 />
+
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
@@ -82,13 +83,23 @@
                         android:textStyle="bold"/>
                 </FrameLayout>
             </LinearLayout>
+
             <Button
                 android:id="@+id/btn_cheat_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"/>
+            <Button
+                android:id="@+id/btn_cheat_forward_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="dialog"
+                android:textColor="@color/white"/>
         </LinearLayout>
+
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/llRunning"
         android:layout_width="match_parent"
@@ -99,7 +110,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/upper_case_exercise_running"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="?android:attr/actionBarSize"
             android:orientation="horizontal">
 
             <TextView
@@ -186,4 +197,5 @@
         android:foregroundGravity="center"
         tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
+
 </RelativeLayout>
