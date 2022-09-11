@@ -15,11 +15,8 @@ class BMICalculatorActivity : AppCompatActivity() {
         if (actionbar != null) {
             actionbar.setDisplayHomeAsUpEnabled(true)
         }
-        upper_case_exercise.setNavigationOnClickListener {
-
-        }
-        upper_case_exercise_running.setNavigationOnClickListener {
-
+        upper_case_bmi.setNavigationOnClickListener {
+            onBackPressed()
         }
     }
 }
