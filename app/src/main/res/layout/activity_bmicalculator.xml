@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
         android:id="@+id/upper_case_bmi"
         android:layout_width="match_parent"
@@ -31,42 +32,129 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:padding="30dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
             android:hint="WEIGHT (in kg)"
             app:expandedHintEnabled="true"
             android:focusable="true"
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/t_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""
+                android:inputType="number"
+                android:layout_marginBottom="30dp"
                 />
-
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
             android:hint="HEIGHT (in cm)"
             app:expandedHintEnabled="true"
             android:text="sadkln"
             android:focusable="false"
             >
 
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/t_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""
+                android:inputType="number"
+                android:layout_marginBottom="30dp"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            >
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp">
+
+                <RadioButton
+                    android:id="@+id/radio_button_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="MALE" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="FEMALE" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_calculate"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Calculate" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bmiCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvResultBMI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    tools:text="21.3"
+                    android:layout_margin="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvResultDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 </RelativeLayout>
