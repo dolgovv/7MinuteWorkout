@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/llStartCountDown"
@@ -66,21 +65,17 @@
                         android:layout_gravity="center"
                         tools:ignore="InvalidId" />
 
-                    <ImageView
+                    <Button
+                        style="@style/Widget.Material3.Button.ElevatedButton"
                         android:id="@+id/ibStartExercise"
                         android:layout_width="190dp"
                         android:layout_height="190dp"
                         android:src="@drawable/start_button_style"
-                        android:layout_gravity="center"/>
-
-                    <TextView
-                        android:id="@+id/tvTimer"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="START"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        android:layout_gravity="center"
+                        app:strokeColor="?attr/colorOnSurface"
+                        app:strokeWidth="2dp"
+                        android:textSize="50dp"
+                        tools:text="10"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -134,9 +129,9 @@
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:src="@drawable/mainscreen"
+                tools:src="@drawable/mainscreen"
+                android:layout_marginBottom="40dp"
                 />
-
 
             <TextView
                 android:id="@+id/tvTextRunning"
@@ -166,21 +161,21 @@
                         android:layout_gravity="center"
                         tools:ignore="InvalidId" />
 
-                    <ImageView
+                    <Button
+                        style="@style/Widget.Material3.Button.ElevatedButton"
                         android:id="@+id/ibStartExercise_running"
                         android:layout_width="190dp"
                         android:layout_height="190dp"
                         android:src="@drawable/start_button_style"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        app:strokeColor="?attr/colorSurfaceVariant"
+                        app:strokeWidth="2dp"
+                        android:clickable="false"
+                        android:textSize="50dp"
+                        tools:text="30"
+                        >
 
-                    <TextView
-                        android:id="@+id/tvTimer_running"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="START"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
+                    </Button>
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

@@ -34,7 +34,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:strokeColor="?attr/colorSurfaceVariant"
+                app:strokeColor="?attr/colorOnSurface"
                 app:strokeWidth="1dp" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:strokeColor="?attr/colorSurfaceVariant"
+                    app:strokeColor="?attr/colorOnSurface"
                     app:strokeWidth="1dp" />
 
                 <TextView
@@ -89,7 +89,7 @@
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:strokeColor="?attr/colorSurfaceVariant"
+                    app:strokeColor="?attr/colorOnSurface"
                     app:strokeWidth="1dp"
 
                     />
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="dfgh"
+                    android:text="test"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

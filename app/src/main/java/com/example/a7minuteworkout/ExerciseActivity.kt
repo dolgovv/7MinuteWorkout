@@ -177,7 +177,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             override fun onTick(millisUntilFinished: Long) {
                 restProgress++
                 exerProgressBar.progress = 10 - restProgress
-                tvTimer.text = (10 - restProgress).toString()
+                ibStartExercise.text = (10 - restProgress).toString()
             }
 
             override fun onFinish() {
@@ -201,7 +201,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             override fun onTick(millisUntilFinished: Long) {
                 runningProgress++
                 exerProgressBar_running.progress = 30 - runningProgress
-                tvTimer_running.text = (30 - runningProgress).toString()
+                ibStartExercise_running.text = (30 - runningProgress).toString()
             }
 
             override fun onFinish() {
