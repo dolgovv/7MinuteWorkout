@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_bmicalculator.*
 class BMICalculatorActivity : AppCompatActivity() {
 
     private var bmiResult = ""
+    private var sexSelected: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmicalculator)
@@ -25,10 +26,28 @@ class BMICalculatorActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            // Responds to child RadioButton checked/unchecked
+            sexSelected = checkedId
+        }
+
         btn_calculate.setOnClickListener{
-            bmiCard.visibility = VISIBLE
-            setBMIindex()
-            setDescriptionBMIResult(tvResultBMI.text.toString().toDouble().toInt())
+            if (t_weight.text!!.length>=2 && t_height.text!!.length>=3){
+                if (sexSelected!=null){
+                    bmiCard.visibility = VISIBLE
+                    setBMIindex()
+                    setDescriptionBMIResult(tvResultBMI.text.toString().toDouble().toInt())
+                }
+                else{
+                    Toast.makeText(this@BMICalculatorActivity,
+                        "Please, select your sex", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                Toast.makeText(this@BMICalculatorActivity,
+                    "Please, enter your actual height and weight", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 

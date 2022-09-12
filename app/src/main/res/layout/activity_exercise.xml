@@ -174,7 +174,6 @@
                         android:textSize="50dp"
                         tools:text="30"
                         >
-
                     </Button>
                 </FrameLayout>
             </LinearLayout>
